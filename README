@@ -1,0 +1,34 @@
+Experimentální hodnocení kvality algoritmů
+Úvod
+
+Pro řešení problému batohu existuje mnoho algoritmů jak exaktních, tak přibližných. O jejich vlastnostech toho není mnoho známo, pouze pro kombinované heuristiky byla dokázána maximální chyba. Chceme-li vědět více, musíme vyhodnocovat experimentálně.
+
+Budeme sledovat dva podstatné parametry - kvalitu řešení a výpočetní náročnost. Uvedeme-li obě tyto veličiny do vytahu, dozvíme se, pro které kombinace nároků na čas a kvalitu je ten který algoritmus nejvýhodnější.
+Kvalita řešení
+
+Pro instance, kde známe exaktní řešení, se kvalita dá měřit absolutně. Tam, kde srovnáváme heuristiky mezi sebou, můžeme srovnávat pouze relativně. Tyto dva způsoby hodnocení je potřeba rozlišovat a konzistentně mezi nimi volit.
+Výpočetní náročnost
+
+Výpočetní náročnost se měří ještě hůře. Celkový čas výpočtu zahrnuje všechny vlivy, selhává však při porovnání výsledků z různých strojů. Zahrnuje také vlivy, které nejsou důležité - například způsob implementace datových struktur. Proto jako měřítko výpočetní složitosti volíme počet testovaných stavů. Poněvadž celkové počty stavů instancí lze snadno odvodit, máme měřítko účinnosti dané výpočetní metody.
+Data pro experiment a jeho uspořádání
+
+Každý experiment má za úkol odpovědět na nějakou otázku. Musí být navržen tak, aby nedával falešné odpovědi, aby například neodpovídal na otázku omezenou. Data tedy musí být reprezentativní, což je vážný problém. Dokonce, pokoušíme-li se data generovat náhodně, můžeme nevědomky generovat instance s určitými pevnými charakteristikami. Proto je generátor instancí rozsáhle parametrizován. Nejprve je třeba zjistit citlivost jednotlivých metod na parametry řešených instancí. Jsou zde jistá podezření:
+
+    výpočetní náročnost dynamického programování může být citlivá na maximální cenu,
+    výkon metod, které vycházejí ze stavu „prázdný batoh“ se může lišit od metod, vycházejících ze stavu „plný batoh“ podle poměru celková váha / kapacita batohu,
+    není jasné, jakou roli hraje granularita instance (převaha malých nebo převaha velkých věcí).
+
+Zadání
+
+    Prozkoumejte citlivost metod řešení problému batohu na parametry instancí generovaných generátorem náhodných instancí. Máte-li podezření na další závislosti, modifikujte zdrojový tvar generátoru.
+    Na základě zjištění navrhněte a proveďte experimentální vyhodnocení kvality řešení a výpočetní náročnosti
+    Pozorujte zejména závislosti výpočetního času (B&B, DP, heuristika) a rel. chyby (heuristika) na:
+        maximální váze věcí
+        maximální ceně věcí
+        poměru kapacity batohu k sumární váze
+        granularitě (pozor - zde si uvědomte smysl exponentu granularity)
+    Doporučuje se zafixovat všechny parametry na konstantní hodnotu a vždy plynule měnit jeden parametr
+
+Dovětek
+
+Literatura k tomuto tématu je velice skoupá. Často lze slyšet v příslušných diskusních skupinách výroky typu „metoda větví a hranic bývá pro batoh rychlejší než dynamické programování“. Taková ex cathedra utroušená moudra nevzbuzují přílišnou důvěru. Lépe je mít to změřené.
